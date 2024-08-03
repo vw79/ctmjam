@@ -15,6 +15,11 @@ public class MainMenuManager : MonoBehaviour
 
     public void DressingRoom()
     {
-        Debug.Log("Dressing Room Button Clicked!");
+        SceneManager.LoadScene("DressingRoom");
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

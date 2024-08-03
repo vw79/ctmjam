@@ -339,7 +339,6 @@ GameObject:
   - component: {fileID: 688312303}
   - component: {fileID: 688312302}
   - component: {fileID: 688312301}
-  - component: {fileID: 688312300}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -347,19 +346,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &688312300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 688312299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ef3ac4add611c24eb03c0a2b5fa8a22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scrollSpeed: 0.5
 --- !u!23 &688312301
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1011,7 +997,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1826797066}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
-        m_MethodName: PlayGame
+        m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
