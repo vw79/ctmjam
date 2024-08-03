@@ -59,6 +59,11 @@ public class playerController : MonoBehaviour
         playerInput.Disable();
     }
 
+    private void Start()
+    {
+        coinVFX.Stop();
+    }
+
     private void Update()
     {
         if (!GameManager.instance.isDead)
