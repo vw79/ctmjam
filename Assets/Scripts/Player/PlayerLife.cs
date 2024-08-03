@@ -5,9 +5,9 @@ public class PlayerLife : MonoBehaviour
     [SerializeField] private int maxHealth = 5;
     private int currentHealth;
 
-     void Start()
+    void Start()
     {
-        currentHealth = maxHealth;   
+        currentHealth = maxHealth;
     }
 
     public void TakeDamage(int damage)
@@ -15,7 +15,7 @@ public class PlayerLife : MonoBehaviour
         currentHealth -= damage;
         Debug.Log("Player Health: " + currentHealth);
 
-        if (currentHealth <= 0) 
+        if (currentHealth <= 0)
         {
             GameOver();
         }
@@ -24,5 +24,6 @@ public class PlayerLife : MonoBehaviour
     private void GameOver()
     {
         Debug.Log("Game Over!");
+        GameManager.instance.isDead = true;
     }
 }
