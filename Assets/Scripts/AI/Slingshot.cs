@@ -5,9 +5,9 @@ public class Slingshot : MonoBehaviour
 {
     [SerializeField] private Transform player;
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float stopDistance = 2f; // Distance at which the enemy stops moving
-    [SerializeField] private float lungeSpeed = 10f; // Speed of the lunge
-    [SerializeField] private float retreatDistance = 2f; // Distance the enemy retreats after lunging
+    [SerializeField] private float stopDistance = 4f; // Distance at which the enemy stops moving
+    [SerializeField] private float lungeSpeed = 40f; // Speed of the lunge
+    [SerializeField] private float retreatDistance = 4f; // Distance the enemy retreats after lunging
     private Rigidbody2D rb;
     private Vector2 movement;
     private bool isLunging = false;
