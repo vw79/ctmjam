@@ -3,16 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
+[System.Serializable]
 public class SkinDetails{
-    [SerializeField] private GameObject Skin;
+    public GameObject Skin;
 }
 
-[Serializable]
+[System.Serializable]
 public class TierList{
-    [SerializeField] private SkinDetails[] CommonTier;
-    [SerializeField] private SkinDetails[] UncommonTier;
-    [SerializeField] private SkinDetails[] RareTier;
+    public SkinDetails[] CommonTier;
+    public SkinDetails[] UncommonTier;
+    public SkinDetails[] RareTier;
 }
 public class GachaController : MonoBehaviour
 {
