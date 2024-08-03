@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DressingRoom.unity
     guid: 050ef1ebcb155fd45a6257c652888621
+  - enabled: 1
+    path: Assets/Scenes/GachaScene.unity
+    guid: 7015793fdde3cea4eb5cf7e5f655b1f2
   m_configObjects: {}

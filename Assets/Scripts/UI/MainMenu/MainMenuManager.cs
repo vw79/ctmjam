@@ -22,4 +22,9 @@ public class MainMenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void GachaRoom()
+    {
+        SceneManager.LoadScene("GachaScene");
+    }
 }
