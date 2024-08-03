@@ -10,6 +10,8 @@ public class terrainTile : MonoBehaviour
     void Start()
     {
         GetComponentInParent<infiniteWorld>().Add(gameObject, tilePosition);
+
+        transform.position = new Vector3(-100, -100, 0);
     }
 
 }

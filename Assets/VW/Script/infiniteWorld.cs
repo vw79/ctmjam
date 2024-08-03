@@ -22,6 +22,10 @@ public class infiniteWorld : MonoBehaviour
         terrainTiles = new GameObject[terrainTileHorizontalCount, terrainTileVerticalCount];
     }
 
+    private void Start()
+    {
+        UpdateTilesOnScreen();
+    }
     private void Update()
     {
         playerTilePosition.x = (int)(playerTransform.position.x / tileSize);

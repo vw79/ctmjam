@@ -5,11 +5,22 @@ using UnityEngine.InputSystem;
 
 public class playerController : MonoBehaviour
 {
+    public enum State
+    {
+        Idle,
+        Walk,
+        Attack,
+        Die
+    }
+
     [SerializeField] private float playerSpeed = 2.0f;
-    [SerializeField] private Transform movingBar; 
-    [SerializeField] private Transform correctPositionBar; 
-    [SerializeField] private RectTransform horizontalBar; 
+    [SerializeField] private Transform movingBar;
+    [SerializeField] private Transform correctPositionBar;
+    [SerializeField] private RectTransform horizontalBar;
+
     private SpriteRenderer spriteRenderer;
+    private Animator animator;
+    private State currentState;
 
     protected PlayerActionsExample playerInput;
     private Vector2 movement;
@@ -21,6 +32,7 @@ public class playerController : MonoBehaviour
     {
         playerInput = new PlayerActionsExample();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        animator = GetComponentInChildren<Animator>();
         CalculateSections();
     }
 
@@ -34,10 +46,80 @@ public class playerController : MonoBehaviour
         sectionCenters[2] = width / 2 - sectionWidth / 2;
     }
 
+    private void OnEnable()
+    {
+        playerInput.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerInput.Disable();
+    }
+
     private void Update()
+    {
+        HandleInput();
+        HandleState();
+    }
+
+    private void HandleInput()
     {
         movement = playerInput.Player.Move.ReadValue<Vector2>();
 
+        if (currentState != State.Die)
+        {
+            if (movement != Vector2.zero)
+            {
+                SetState(State.Walk);
+            }
+            else
+            {
+                SetState(State.Idle);
+            }
+
+            if (playerInput.Player.Jump.triggered)
+            {
+                SetState(State.Die);
+            }
+        }
+    }
+
+    private void HandleState()
+    {
+        switch (currentState)
+        {
+            case State.Idle:
+                animator.Play("biggie_idle");
+                break;
+
+            case State.Walk:
+                Move();
+                animator.Play("biggie_walk");
+                break;
+
+            case State.Attack:
+                CheckBarPosition();
+                SetState(State.Idle);
+                break;
+
+            case State.Die:
+                animator.Play("biggie_die");
+                break;
+        }
+    }
+
+    private void SetState(State newState)
+    {
+        // Prevent changing state if the current state is Die
+        if (currentState == State.Die)
+        {
+            return;
+        }
+        currentState = newState;
+    }
+
+    private void Move()
+    {
         Vector3 move = new Vector3(movement.x, movement.y, 0);
         transform.position += move * Time.deltaTime * playerSpeed;
 
@@ -49,21 +131,6 @@ public class playerController : MonoBehaviour
         {
             spriteRenderer.flipX = false;
         }
-
-        if (playerInput.Player.Jump.triggered)
-        {
-            CheckBarPosition();
-        }
-    }
-
-    private void OnEnable()
-    {
-        playerInput.Enable();
-    }
-
-    private void OnDisable()
-    {
-        playerInput.Disable();
     }
 
     private void CheckBarPosition()
