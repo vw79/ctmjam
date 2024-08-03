@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public Animator animator;
     public GameObject sceneTransitionGO;
+    public bool isDead = false;
 
     private void Awake()
     {
@@ -23,12 +24,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-
-    }
-
-    #region Scene Management
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -50,7 +45,6 @@ public class GameManager : MonoBehaviour
             SoundManager.instance.Play("bgm");
         }
     }
-    #endregion
 
     public void LoadScene(int sceneIndex)
     {
@@ -62,5 +56,4 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         sceneTransitionGO.SetActive(false);
     }
-
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 public class playerController : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class playerController : MonoBehaviour
     [SerializeField] private Transform movingBar;
     [SerializeField] private Transform correctPositionBar;
     [SerializeField] private RectTransform horizontalBar;
+
+    public ParticleSystem coinVFX;
 
     private SpriteRenderer spriteRenderer;
     private Animator animator;
@@ -58,7 +61,10 @@ public class playerController : MonoBehaviour
 
     private void Update()
     {
-        HandleInput();
+        if (!GameManager.instance.isDead)
+        {
+            HandleInput();
+        }
         HandleState();
     }
 
@@ -141,7 +147,7 @@ public class playerController : MonoBehaviour
 
         if (Mathf.Abs(movingBarX - correctBarX) <= 20.0f)
         {
-            Debug.Log("Success!");
+            coinVFX.Play();
             UpdateCorrectPositionBar();
         }
         else
