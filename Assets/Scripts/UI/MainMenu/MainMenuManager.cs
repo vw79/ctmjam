@@ -12,4 +12,9 @@ public class MainMenuManager : MonoBehaviour
     {
         Debug.Log("Options Button Clicked!");
     }
+
+    public void DressingRoom()
+    {
+        Debug.Log("Dressing Room Button Clicked!");
+    }
 }
