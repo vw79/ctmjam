@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public Animator animator;
+    public GameObject sceneTransitionGO;
 
     private void Awake()
     {
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         animator.SetTrigger("Start");
+        StartCoroutine(DisableSceneTransitionCoroutine());
 
         int buildIndex = SceneManager.GetActiveScene().buildIndex;
         if (buildIndex == 0)
@@ -54,4 +56,11 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(sceneIndex);
     }
+
+    IEnumerator DisableSceneTransitionCoroutine()
+    {
+        yield return new WaitForSeconds(1f);
+        sceneTransitionGO.SetActive(false);
+    }
+
 }

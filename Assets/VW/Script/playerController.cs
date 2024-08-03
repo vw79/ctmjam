@@ -79,7 +79,8 @@ public class playerController : MonoBehaviour
 
             if (playerInput.Player.Jump.triggered)
             {
-                SetState(State.Die);
+                SetState(State.Attack);
+                //SetState(State.Die); testing
             }
         }
     }
