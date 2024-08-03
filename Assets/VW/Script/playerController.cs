@@ -19,6 +19,7 @@ public class playerController : MonoBehaviour
     [SerializeField] private Transform correctPositionBar;
     [SerializeField] private RectTransform horizontalBar;
 
+    public GameObject hitBox;
     public ParticleSystem coinVFX;
 
     private SpriteRenderer spriteRenderer;
@@ -62,6 +63,7 @@ public class playerController : MonoBehaviour
     private void Start()
     {
         coinVFX.Stop();
+        hitBox.SetActive(false);
     }
 
     private void Update()
@@ -120,7 +122,7 @@ public class playerController : MonoBehaviour
         }
     }
 
-    private void SetState(State newState)
+    public void SetState(State newState)
     {
         // Prevent changing state if the current state is Die
         if (currentState == State.Die)
@@ -153,13 +155,21 @@ public class playerController : MonoBehaviour
         if (Mathf.Abs(movingBarX - correctBarX) <= 20.0f)
         {
             coinVFX.Play();
+            hitBox.SetActive(true);
             UpdateCorrectPositionBar();
+            StartCoroutine(DisableHitBox(coinVFX.main.duration));
         }
         else
         {
             Debug.Log("Try Again!");
         }
     }
+    private IEnumerator DisableHitBox(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        hitBox.SetActive(false);
+    }
+
 
     private void UpdateCorrectPositionBar()
     {
@@ -171,4 +181,6 @@ public class playerController : MonoBehaviour
 
         correctPositionBar.localPosition = new Vector3(randomXWithinSection, correctPositionBar.localPosition.y, correctPositionBar.localPosition.z);
     }
+
+    
 }

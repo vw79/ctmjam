@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 
 [System.Serializable]
 public class SkinDetails{
@@ -14,16 +12,45 @@ public class TierList{
     public SkinDetails[] UncommonTier;
     public SkinDetails[] RareTier;
 }
+
+
 public class GachaController : MonoBehaviour
 {
-    private TierList tierList;
+    public TierList tierList;
+    [SerializeField] [Range(0,1)] private float commonProbability ;
+    [SerializeField] [Range(0,1)] private float uncommonProbability ;
+    [SerializeField] [Range(0,1)] private float rareProbability ;
     
-    private void RandomNumGenerator(){
-        int randNum = UnityEngine.Random.Range(1,11);
-        RandomGacha(randNum);
+    private void ShowSkin(){
+        GameObject skin = RandomGacha();
     }
 
-   private void RandomGacha(int num){
+   private GameObject RandomGacha(){
 
+    float num = UnityEngine.Random.Range(0f,10f);
+
+         if (num <= rareProbability)
+        {
+            // Select a random item from RareTier
+            return GetRandomSkin(tierList.RareTier);
+        }
+        else if (num <= rareProbability + uncommonProbability)
+        {
+            // Select a random item from UncommonTier
+            return GetRandomSkin(tierList.UncommonTier);
+        }
+        else
+        {
+            // Select a random item from CommonTier
+            return GetRandomSkin(tierList.CommonTier);
+        }
    }
+
+   GameObject GetRandomSkin(SkinDetails[] tier)
+    {
+        int randomIndex = Random.Range(0, tier.Length);
+        return tier[randomIndex].Skin;
+    }
+
+
 }
