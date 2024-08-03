@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -7,6 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float stopDistance = 2f;
     private Rigidbody2D rb;
     private Vector2 movement;
+    private bool isDamaging = false;
 
      void Start()
     {
@@ -21,11 +23,17 @@ public class Enemy : MonoBehaviour
         {
             direction.Normalize();
             movement = direction;
+            isDamaging = false;
         }
 
         else
         {
             movement = Vector2.zero;
+            if (!isDamaging)
+            {
+                isDamaging = true;
+                StartCoroutine(DamagePlayer());
+            }
         }
     }
 
@@ -37,5 +45,14 @@ public class Enemy : MonoBehaviour
     void moveEnemy(Vector2 direction)
     {
         rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
+    }
+
+    private IEnumerator DamagePlayer()
+    {
+        while (isDamaging)
+        {
+            Debug.Log("Player is being Damaged!");
+            yield return new WaitForSeconds(1f);
+        }
     }
 }
