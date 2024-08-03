@@ -1,29 +1,64 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+using UnityEngine.UI;
 
 public class PlayerLife : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 5;
-    private int currentHealth;
+    [SerializeField] private int playerHealth;
+    [SerializeField] private Image[] hearts;
+    [SerializeField] private SpriteRenderer playerSprite;
 
     void Start()
     {
-        currentHealth = maxHealth;
+        UpdateHealthUI();
+    }
+
+    public void UpdateHealthUI()
+    {
+        if (playerHealth <= 0)
+        {
+            Die();
+        }
+
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            if (i < playerHealth)
+            {
+                hearts[i].enabled = true;
+            }
+            else
+            {
+                hearts[i].enabled = false;
+            }
+        }
     }
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        Debug.Log("Player Health: " + currentHealth);
+        playerHealth -= damage;
+        Debug.Log("Player took damage. Current health: " + playerHealth);
+        UpdateHealthUI();
+        StartCoroutine(FlashRed());
 
-        if (currentHealth <= 0)
-        {
-            GameOver();
-        }
+        
     }
 
-    private void GameOver()
+    private IEnumerator FlashRed()
     {
-        Debug.Log("Game Over!");
+        playerSprite.color = Color.red; 
+        yield return new WaitForSeconds(0.1f); 
+        playerSprite.color = Color.white;
+    }
+
+    private void Die()
+    {
         GameManager.instance.isDead = true;
+        playerController playerController = GetComponent<playerController>();
+        if (playerController != null)
+        {
+            playerController.SetState(playerController.State.Die);
+        }
     }
 }
