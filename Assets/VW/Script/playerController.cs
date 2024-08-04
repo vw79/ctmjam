@@ -165,6 +165,7 @@ public class playerController : MonoBehaviour
         {
             coinVFX.Play();
             hitBox.SetActive(true);
+            SoundManager.instance.Play("X-Coin");
             UpdateCorrectPositionBar();
             StartCoroutine(DisableHitBox(coinVFX.main.duration));
 

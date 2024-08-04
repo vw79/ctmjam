@@ -6,9 +6,11 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private GameObject slingshotPrefab;
+    [SerializeField] private GameObject drillerPrefab;
 
     [SerializeField] private float enemyInterval = 4f;
     [SerializeField] private float slingshotInterval = 7f;
+    [SerializeField] private float drillerInterval = 10f;
 
     [SerializeField] private int poolSize = 8;
 
@@ -17,14 +19,17 @@ public class EnemySpawner : MonoBehaviour
 
     private List<GameObject> enemyPool;
     private List<GameObject> slingshotPool;
+    private List<GameObject> drillerPool;
 
     void Start()
     {
         enemyPool = CreatePool(enemyPrefab, poolSize);
         slingshotPool = CreatePool(slingshotPrefab, poolSize);
+        drillerPool = CreatePool (drillerPrefab, poolSize);
 
         StartCoroutine(SpawnFromPool(enemyInterval, enemyPool));
         StartCoroutine(SpawnFromPool(slingshotInterval, slingshotPool));
+        StartCoroutine(SpawnFromPool(drillerInterval, drillerPool));
     }
 
     private List<GameObject> CreatePool(GameObject prefab, int size)

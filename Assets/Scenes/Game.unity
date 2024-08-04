@@ -3137,7 +3137,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1213334827
@@ -5413,6 +5413,30 @@ MonoBehaviour:
     loop: 1
     playOnAwake: 1
     source: {fileID: 0}
+  - name: DamagePlayer
+    clip: {fileID: 8300000, guid: 819b66b84082a4641858e49abef92beb, type: 3}
+    volume: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: CollectCoins
+    clip: {fileID: 8300000, guid: 1e07bbc58ef134c41940acbfb02f6f74, type: 3}
+    volume: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: X-Coin
+    clip: {fileID: 8300000, guid: 9204f6d405a88d349bbd52c279a618e4, type: 3}
+    volume: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: SlingShot
+    clip: {fileID: 8300000, guid: bebb2304dd9710c4e9f13c199a680890, type: 3}
+    volume: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
 --- !u!4 &2025401440
 Transform:
   m_ObjectHideFlags: 0
@@ -5630,8 +5654,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 6386534220501638061, guid: 5c93385042308844a9863df82829b094, type: 3}
   slingshotPrefab: {fileID: 5335580603019622300, guid: 5817b81d97be161439ba31359b2a9850, type: 3}
+  drillerPrefab: {fileID: 3236533189697727012, guid: 2a1f71e74f391e8418a1c20890f913d8, type: 3}
   enemyInterval: 4
   slingshotInterval: 7
+  drillerInterval: 10
   poolSize: 8
   playerTransform: {fileID: 2099419806}
   safeDistance: 7
