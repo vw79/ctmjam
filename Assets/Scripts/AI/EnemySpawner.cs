@@ -25,7 +25,7 @@ public class EnemySpawner : MonoBehaviour
     {
         enemyPool = CreatePool(enemyPrefab, poolSize);
         slingshotPool = CreatePool(slingshotPrefab, poolSize);
-        drillerPool = CreatePool (drillerPrefab, poolSize);
+        drillerPool = CreatePool(drillerPrefab, poolSize);
 
         StartCoroutine(SpawnFromPool(enemyInterval, enemyPool));
         StartCoroutine(SpawnFromPool(slingshotInterval, slingshotPool));
@@ -49,6 +49,11 @@ public class EnemySpawner : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(interval);
+            if (GameManager.instance.isDead)
+            {
+                yield return new WaitUntil(() => !GameManager.instance.isDead);
+            }
+
             GameObject obj = GetPooledObject(pool);
             if (obj != null)
             {

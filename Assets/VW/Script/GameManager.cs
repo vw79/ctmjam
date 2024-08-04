@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,6 +13,8 @@ public class GameManager : MonoBehaviour
     public bool isDead = false;
 
     [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private TextMeshProUGUI coinText; // Assign this in the inspector
+
     private float elapsedTime;
     private bool isTimerRunning;
 
@@ -50,18 +51,28 @@ public class GameManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        InitializeSceneTrans();
+
         int buildIndex = SceneManager.GetActiveScene().buildIndex;
         if (buildIndex == 0)
         {
-            InitializeSceneTrans();
-            SoundManager.instance.Play("bgm");
+            SoundManager.instance.Play("bgm");          
         }
         else if (buildIndex == 1)
         {
-            InitializeSceneTrans();
             InitializeGameElement();
             ResetGame();
             SoundManager.instance.Play("bgm");
+        }
+        else if (buildIndex == 3)
+        {
+            // Display the amount of coins collected
+            coinText = GameObject.Find("coinText").GetComponent<TextMeshProUGUI>();
+            if (coinText != null)
+            {
+                coinsCollected = PlayerPrefs.GetInt("CoinsCollected", 0);
+                coinText.text = "Coins: " + coinsCollected.ToString();
+            }
         }
         animator.SetTrigger("Start");
         StartCoroutine(DisableSceneTransitionCoroutine());
@@ -90,6 +101,9 @@ public class GameManager : MonoBehaviour
         endKillText = gameOverTransform.Find("Enemies Killed").GetComponent<TextMeshProUGUI>();
         endGoldText = gameOverTransform.Find("Coins Collected").GetComponent<TextMeshProUGUI>();
 
+        // Retrieve coins collected from PlayerPrefs
+        coinsCollected = PlayerPrefs.GetInt("CoinsCollected", 0);
+
         ResetGame();
     }
 
@@ -97,7 +111,6 @@ public class GameManager : MonoBehaviour
     {
         elapsedTime = 0;
         isTimerRunning = true;
-        coinsCollected = 0;
         enemiesKilled = 0;
         UpdateTimerText();
     }
@@ -158,6 +171,9 @@ public class GameManager : MonoBehaviour
     {
         coinsCollected++;
         endGoldText.text = coinsCollected.ToString();
+        // Store coins collected in PlayerPrefs
+        PlayerPrefs.SetInt("CoinsCollected", coinsCollected);
+        PlayerPrefs.Save();
     }
 
     public void AddEnemyKill()

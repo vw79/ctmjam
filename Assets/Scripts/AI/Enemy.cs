@@ -115,9 +115,6 @@ public class Enemy : MonoBehaviour
             }
 
         }
-
-
-
     }
 
     private void ShootBullet(Vector3 direction)
@@ -159,7 +156,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !GameManager.instance.isDead)
         {
             if (enemyType == EnemyType.Regular)
             {
