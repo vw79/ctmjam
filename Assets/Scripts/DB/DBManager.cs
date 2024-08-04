@@ -17,8 +17,8 @@ public struct userID{
 [System.Serializable]
 [FirestoreData]
 public class Skins{
-    [Fire]
-    public string skinName;
+    [FirestoreProperty]
+    public string skinName{get;set;}
     public bool IsOwned = false;
 }
 
