@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
     private void InitializeSceneTrans()
     {
         isDead = false;
+       
         animator = GameObject.Find("SceneTrans").GetComponentInChildren<Animator>();
         sceneTrasitionImage = GameObject.Find("SceneTrans").GetComponentInChildren<Image>();
     }
