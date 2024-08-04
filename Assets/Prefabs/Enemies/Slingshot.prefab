@@ -133,7 +133,7 @@ MonoBehaviour:
   coin: {fileID: 3028044437998721243, guid: b44e0d3d009efa946809471f21045c22, type: 3}
   moveSpeed: 2
   stopDistance: 5
-  lungeSpeed: 30
+  lungeSpeed: 25
   slingshotCooldown: 2
   regularDamage: 0
   slingshotDamage: 1

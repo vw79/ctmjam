@@ -12,6 +12,7 @@ public class CollectCoins : MonoBehaviour
         {
             counter++;
             Destroy(gameObject);
+            SoundManager.instance.Play("CollectCoins");
             Debug.Log("Coins Collected: " +  counter);
         }
     }

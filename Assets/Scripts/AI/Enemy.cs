@@ -83,6 +83,7 @@ public class Enemy : MonoBehaviour
             {
                 movement = Vector2.zero;
                 StartCoroutine(Lunge());
+                SoundManager.instance.Play("SlingShot");
             }
         }
     }

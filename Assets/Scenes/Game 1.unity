@@ -1026,7 +1026,7 @@ SpriteRenderer:
   m_Size: {x: 32, y: 32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &526124891
@@ -3304,8 +3304,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb7500143377b964c92dc67bdacd3862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1408526121}
-  sceneTransitionGO: {fileID: 1911124155}
   isDead: 0
 --- !u!4 &1911892313
 Transform:
@@ -3722,6 +3720,30 @@ MonoBehaviour:
     volume: 1
     loop: 1
     playOnAwake: 1
+    source: {fileID: 0}
+  - name: X-Coin
+    clip: {fileID: 8300000, guid: 9204f6d405a88d349bbd52c279a618e4, type: 3}
+    volume: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: CollectCoins
+    clip: {fileID: 8300000, guid: 1e07bbc58ef134c41940acbfb02f6f74, type: 3}
+    volume: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: DamagePlayer
+    clip: {fileID: 8300000, guid: 819b66b84082a4641858e49abef92beb, type: 3}
+    volume: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: SlingShot
+    clip: {fileID: 8300000, guid: bebb2304dd9710c4e9f13c199a680890, type: 3}
+    volume: 1
+    loop: 0
+    playOnAwake: 0
     source: {fileID: 0}
 --- !u!4 &2025401440
 Transform:
