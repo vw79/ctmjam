@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI endKillText;
     private TextMeshProUGUI endGoldText;
 
+    private int enemiesKilled;
+    private int coinsCollected;
+
     private void Awake()
     {
         if (instance == null)
@@ -58,6 +61,7 @@ public class GameManager : MonoBehaviour
         else if (buildIndex == 1)
         {
             InitializeSceneTrans();
+            SoundManager.instance.Play("bgm");
         }
         animator.SetTrigger("Start");
         StartCoroutine(DisableSceneTransitionCoroutine());

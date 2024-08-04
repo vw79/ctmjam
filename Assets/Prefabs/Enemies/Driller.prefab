@@ -10,11 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 7931552394710529656}
   - component: {fileID: 4847460906993026693}
-  - component: {fileID: 8486560818318706607}
   - component: {fileID: 5956372815895011578}
-  m_Layer: 0
+  - component: {fileID: 8486560818318706607}
+  - component: {fileID: 9113312424932113334}
+  - component: {fileID: 8204551379746586581}
+  m_Layer: 6
   m_Name: Driller
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,29 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8486560818318706607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3236533189697727012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8368fef7dd837464e96822a50a0a8155, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyType: 2
-  player: {fileID: 0}
-  bullet: {fileID: 727721750340635194, guid: 51a71673e0fb0ab4ca9cf44d2a669a7d, type: 3}
-  coin: {fileID: 3028044437998721243, guid: b44e0d3d009efa946809471f21045c22, type: 3}
-  moveSpeed: 11
-  stopDistance: 10
-  lungeSpeed: 0
-  slingshotCooldown: 0
-  regularDamage: 0
-  slingshotDamage: 0
-  startShotCooldown: 3
 --- !u!50 &5956372815895011578
 Rigidbody2D:
   serializedVersion: 4
@@ -136,3 +115,82 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8486560818318706607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3236533189697727012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8368fef7dd837464e96822a50a0a8155, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyType: 2
+  player: {fileID: 0}
+  bullet: {fileID: 727721750340635194, guid: 51a71673e0fb0ab4ca9cf44d2a669a7d, type: 3}
+  coin: {fileID: 3028044437998721243, guid: b44e0d3d009efa946809471f21045c22, type: 3}
+  moveSpeed: 11
+  stopDistance: 10
+  lungeSpeed: 0
+  slingshotCooldown: 0
+  regularDamage: 0
+  slingshotDamage: 0
+  startShotCooldown: 3
+--- !u!70 &9113312424932113334
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3236533189697727012}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.20672025, y: 0.75801086}
+  m_Size: {x: 27.532919, y: 41.92996}
+  m_Direction: 0
+--- !u!95 &8204551379746586581
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3236533189697727012}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8c50d059c2f33f34085d29917f119c7b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

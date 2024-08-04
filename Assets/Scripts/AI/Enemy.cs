@@ -132,9 +132,7 @@ public class Enemy : MonoBehaviour
         isLunging = true;
 
         Vector2 lungeTarget = (Vector2)player.position;
-
-        SoundManager.instance.Play("Charge");
-        
+       
         yield return new WaitForSeconds(0.5f);
         
         // Lunge towards the player
