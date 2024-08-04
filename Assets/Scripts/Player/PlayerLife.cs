@@ -42,6 +42,7 @@ public class PlayerLife : MonoBehaviour
         Debug.Log("Player took damage. Current health: " + playerHealth);
         UpdateHealthUI();
         StartCoroutine(FlashRed());
+        SoundManager.instance.Play("DamagePlayer");
     }
 
     private IEnumerator FlashRed()
