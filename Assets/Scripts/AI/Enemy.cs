@@ -181,7 +181,7 @@ public class Enemy : MonoBehaviour
 
         for (int i = 0; i < coinCount; i++)
         {
-            Vector3 spawnPosition = transform.position + (Vector3)Random.insideUnitCircle * 0.5f; // Randomize the spawn position a bit
+            Vector3 spawnPosition = transform.position + (Vector3)Random.insideUnitCircle * 2.5f; // Randomize the spawn position a bit
             Instantiate(coin, spawnPosition, Quaternion.identity);
         }
     }
