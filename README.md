@@ -25,8 +25,13 @@ of enemies such as Bolt, Coconut and The Driller.
 ![Enemy1 (2)](https://github.com/user-attachments/assets/78faa46b-0f62-436c-8df2-5e08f19d70c6)
 
 
-**2.Coconut (Lunge Attack)**: The Coconut is a heavy type enemy which uses it's entire body to lunge at the player and deal higher damage. After they dealt their damage, they retreat and attempt to attack again
-                              if they are in range with the player, if the player is not in range, The Coconut will continue to search the player.
 
-**3.The Driller (Range Attack)**: The Driller is an actuall drilling tool that shoots screws at the player. Similar to The Coconut, if it is in range with the player, it stops and starts shooting screws at the     
-                                  player. They then start chasing the player once the player leaves their range of fire.
+**2.Coconut (Lunge Attack)**: The Coconut is a heavy type enemy which uses it's entire body to lunge at the player and deal higher damage. After they dealt their damage, they retreat and attempt to attack again if they are in range with the player, if the player is not in range, The Coconut will continue to search the player.
+
+
+![cc1 (1)](https://github.com/user-attachments/assets/558e2617-11b1-4b1c-b5fe-fa9615f4abdc)
+
+
+**3.The Driller (Range Attack)**: The Driller is an actuall drilling tool that shoots screws at the player. Similar to The Coconut, if it is in range with the player, it stops and starts shooting screws at the player. They then start chasing the player once the player leaves their range of fire.
+
+![drill (1)](https://github.com/user-attachments/assets/d2ed2e08-1da7-4b24-b4f1-a9a45d024cfd)
