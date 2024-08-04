@@ -34,3 +34,10 @@ Tap the White Line once when it aligns with the red line in order to explode and
 **3.The Driller (Range Attack)**: The Driller is an actuall drilling tool that shoots screws at the player. Similar to The Coconut, if it is in range with the player, it stops and starts shooting screws at the player. They then start chasing the player once the player leaves their range of fire.
 
 ![drill (1)](https://github.com/user-attachments/assets/d2ed2e08-1da7-4b24-b4f1-a9a45d024cfd)
+
+
+
+# Characters
+Players are only playing as 1 character which is Biggie, the mascot of AirAsia. Different skins of Biggie are also created which can be obtained from the Gacha Store
+
+![BIGGIE (1)](https://github.com/user-attachments/assets/e658e229-ad61-4d6d-8507-2477e642f047)
