@@ -44,7 +44,7 @@ Players are only playing as 1 character which is Biggie, the mascot of AirAsia. 
 
 
 # Gacha Store
-The Gacha Store is where the player can spend coins they collect from enemies in order to purchase the skins of the character Biggie. There are different rarities for the skins which are **Common**, **UnCommon**, and **Rare**.
+The Gacha Store is where the player can spend coins they collect from enemies in order to purchase the skins of the character Biggie. There are different rarities for the skins which are **Common**, **Uncommon**, and **Rare**.
 
 ![Dressing Room Image](https://github.com/user-attachments/assets/652b0872-b480-45d2-b9fe-2c9050e2719d)
 
