@@ -129,12 +129,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 0
   player: {fileID: 0}
+  bullet: {fileID: 0}
+  coin: {fileID: 3028044437998721243, guid: b44e0d3d009efa946809471f21045c22, type: 3}
   moveSpeed: 2
   stopDistance: 1.2
   lungeSpeed: 10
   slingshotCooldown: 2
   regularDamage: 1
   slingshotDamage: 0
+  startShotCooldown: 0
 --- !u!95 &4870783558196863856
 Animator:
   serializedVersion: 5

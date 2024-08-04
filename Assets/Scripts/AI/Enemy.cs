@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private EnemyType enemyType;
     [SerializeField] private Transform player;
     [SerializeField] private GameObject bullet;
+    [SerializeField] private GameObject coin;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float stopDistance = 2f;
     [SerializeField] private float lungeSpeed = 10f;
@@ -168,7 +169,20 @@ public class Enemy : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Hitbox"))
         {
+            SpawnCoins();
             spawner.ReturnToPool(gameObject);
+
+        }
+    }
+
+    private void SpawnCoins()
+    {
+        int coinCount = Random.Range(2, 6); // Random number of coins between 2 and 5
+
+        for (int i = 0; i < coinCount; i++)
+        {
+            Vector3 spawnPosition = transform.position + (Vector3)Random.insideUnitCircle * 0.5f; // Randomize the spawn position a bit
+            Instantiate(coin, spawnPosition, Quaternion.identity);
         }
     }
 }
