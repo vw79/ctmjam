@@ -15,11 +15,13 @@ public struct userID{
 }
 
 [System.Serializable]
-[FirestoreData]
+
 public class Skins{
-    [FirestoreProperty]
-    public string skinName{get;set;}
+
+    public string skinName;
     public bool IsOwned = false;
+
+    public bool IsEquipped = false;
 }
 
 public class DBManager : MonoBehaviour
@@ -91,17 +93,25 @@ public class DBManager : MonoBehaviour
             Dictionary<string, object> skinDict = new Dictionary<string, object>
             {
                 { "skinName", skin.skinName },
-                { "IsOwned", skin.IsOwned }
+                { "IsOwned", skin.IsOwned },
+                { "IsEquipped", skin.IsEquipped }
             };
             skinsData.Add(skinDict);
         }
+
+         // Prepare the data to be added to Firestore
+        Dictionary<string, object> data = new Dictionary<string, object>
+        {
+            { "skins", skinsData }
+        };
+
 
         Dictionary<string, object> scoreData = new Dictionary<string, object>
         {
             { "highScore", 0 } 
         };
 
-         skinDocRef.SetAsync(skinsData).ContinueWithOnMainThread(task =>
+         skinDocRef.SetAsync(data).ContinueWithOnMainThread(task =>
         {
             if (task.IsCompleted)
             {

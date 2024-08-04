@@ -665,14 +665,18 @@ MonoBehaviour:
   DBCollectionName: PlayerDB
   DBDocumentName: PlayerID
   ListofSkins:
-  - skinName: Base Biggie
+  - skinName: Biggie
     IsOwned: 1
-  - skinName: Stripes Biggie
+    IsEquipped: 1
+  - skinName: Biggie
     IsOwned: 0
-  - skinName: Driver Biggie
+    IsEquipped: 0
+  - skinName: Biggie2
     IsOwned: 0
-  - skinName: Spider-Variant Biggie
+    IsEquipped: 0
+  - skinName: Biggie3
     IsOwned: 0
+    IsEquipped: 0
 --- !u!1 &1753389245
 GameObject:
   m_ObjectHideFlags: 0
