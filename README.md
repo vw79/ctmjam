@@ -21,7 +21,7 @@ of enemies such as Bolt, Coconut and The Driller.
 # Enemies
 
 **1.Bolt (Melee Attack)**: Bolt is a regular enemy who just deals melee damage to the player. This enemy has slow movement speed and also low damage deal. Players are able to easily kill this enemy.
-![Enemy1](https://github.com/user-attachments/assets/74cdcf9d-8ae1-472b-95cd-e4b30e8c86ca)
+![Enemy1 (1)](https://github.com/user-attachments/assets/a1d25da9-8cc1-46ed-8115-2d5ca236af00)
 
 
 **2.Coconut (Lunge Attack)**: The Coconut is a heavy type enemy which uses it's entire body to lunge at the player and deal higher damage. After they dealt their damage, they retreat and attempt to attack again
