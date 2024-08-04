@@ -10,8 +10,9 @@ public class PlayerLife : MonoBehaviour
     [SerializeField] private Image[] hearts;
     [SerializeField] private SpriteRenderer playerSprite;
 
-    void Start()
+    private void Start()
     {
+        ResetHealth();
         UpdateHealthUI();
     }
 
@@ -41,14 +42,13 @@ public class PlayerLife : MonoBehaviour
         Debug.Log("Player took damage. Current health: " + playerHealth);
         UpdateHealthUI();
         StartCoroutine(FlashRed());
-
-        
+        SoundManager.instance.Play("DamagePlayer");
     }
 
     private IEnumerator FlashRed()
     {
-        playerSprite.color = Color.red; 
-        yield return new WaitForSeconds(0.1f); 
+        playerSprite.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
         playerSprite.color = Color.white;
     }
 
@@ -60,5 +60,10 @@ public class PlayerLife : MonoBehaviour
         {
             playerController.SetState(playerController.State.Die);
         }
+    }
+
+    public void ResetHealth()
+    {
+        playerHealth = 3;
     }
 }
