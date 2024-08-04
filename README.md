@@ -17,3 +17,12 @@ of enemies such as Bolt, Coconut and The Driller.
 
 **5. Gacha Store**: The Gacha Store is an additional section for the player to purchase cosmetics for their characters. There are 3 rarities in the Gacha Store which are Common, Uncommon and Rare. Each rarity has 
                     it's percentage of obtaining them. The rarer the item, the lower the chance of obtaining and vice versa.
+
+# Enemies
+
+**1.Bolt (Melee Attack)**: Bolt is a regular enemy who just deals melee damage to the player. This enemy has slow movement speed and also low damage deal. Players are able to easily kill this enemy.
+**2.Coconut (Lunge Attack)**: The Coconut is a heavy type enemy which uses it's entire body to lunge at the player and deal higher damage. After they dealt their damage, they retreat and attempt to attack again
+                              if they are in range with the player, if the player is not in range, The Coconut will continue to search the player.
+
+**3.The Driller (Range Attack)**: The Driller is an actuall drilling tool that shoots screws at the player. Similar to The Coconut, if it is in range with the player, it stops and starts shooting screws at the     
+                                  player. They then start chasing the player once the player leaves their range of fire.
