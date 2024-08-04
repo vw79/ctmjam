@@ -54,13 +54,13 @@ public class GameManager : MonoBehaviour
         if (buildIndex == 0)
         {
             InitializeSceneTrans();
-            InitializeGameElement();
-            ResetTimer();
             SoundManager.instance.Play("bgm");
         }
         else if (buildIndex == 1)
         {
             InitializeSceneTrans();
+            InitializeGameElement();
+            ResetGame();
             SoundManager.instance.Play("bgm");
         }
         animator.SetTrigger("Start");
@@ -90,13 +90,15 @@ public class GameManager : MonoBehaviour
         endKillText = gameOverTransform.Find("Enemies Killed").GetComponent<TextMeshProUGUI>();
         endGoldText = gameOverTransform.Find("Coins Collected").GetComponent<TextMeshProUGUI>();
 
-        ResetTimer();
+        ResetGame();
     }
 
-    private void ResetTimer()
+    private void ResetGame()
     {
         elapsedTime = 0;
         isTimerRunning = true;
+        coinsCollected = 0;
+        enemiesKilled = 0;
         UpdateTimerText();
     }
 
@@ -148,7 +150,19 @@ public class GameManager : MonoBehaviour
         int minutes = Mathf.FloorToInt(elapsedTime / 60);
         int seconds = Mathf.FloorToInt(elapsedTime % 60);
         endTimeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-        endKillText.text = "0";
-        endGoldText.text = "0";
+        endKillText.text = enemiesKilled.ToString();
+        endGoldText.text = coinsCollected.ToString();
+    }
+
+    public void AddCoin()
+    {
+        coinsCollected++;
+        endGoldText.text = coinsCollected.ToString();
+    }
+
+    public void AddEnemyKill()
+    {
+        enemiesKilled++;
+        endKillText.text = enemiesKilled.ToString();
     }
 }

@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.Find("PlayerSprite").GetComponent<Transform>(); 
+        player = GameObject.Find("PlayerSprite").GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();
         playerLife = GameObject.Find("Player").GetComponent<PlayerLife>();
         originalPosition = rb.position;
@@ -116,8 +116,8 @@ public class Enemy : MonoBehaviour
 
         }
 
-        
-        
+
+
     }
 
     private void ShootBullet(Vector3 direction)
@@ -132,9 +132,9 @@ public class Enemy : MonoBehaviour
         isLunging = true;
 
         Vector2 lungeTarget = (Vector2)player.position;
-       
+
         yield return new WaitForSeconds(0.5f);
-        
+
         // Lunge towards the player
         while (Vector2.Distance(rb.position, lungeTarget) > 0.1f)
         {
@@ -172,15 +172,15 @@ public class Enemy : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Hitbox"))
         {
+            GameManager.instance.AddEnemyKill();
             SpawnCoins();
             spawner.ReturnToPool(gameObject);
-
         }
     }
 
     private void SpawnCoins()
     {
-        int coinCount = Random.Range(2, 6); // Random number of coins between 2 and 5
+        int coinCount = Random.Range(2, 4); // Random number of coins between 2 and 5
 
         for (int i = 0; i < coinCount; i++)
         {
