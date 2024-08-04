@@ -8,12 +8,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     private Animator animator;
-    private Image sceneTrasitionImage;
-    private GameObject gamerOverGO;
+    private Image sceneTransitionImage;
+    private GameObject gameOverGO;
     public bool isDead = false;
+    private bool isGameOverHandled = false;
 
-    [SerializeField] private TextMeshProUGUI timerText;
-    [SerializeField] private TextMeshProUGUI coinText; // Assign this in the inspector
+    private TextMeshProUGUI timerText;
+    private TextMeshProUGUI coinText;
 
     private float elapsedTime;
     private bool isTimerRunning;
@@ -24,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     private int enemiesKilled;
     private int coinsCollected;
+
+    public GameData gameData;
 
     private void Awake()
     {
@@ -56,7 +59,7 @@ public class GameManager : MonoBehaviour
         int buildIndex = SceneManager.GetActiveScene().buildIndex;
         if (buildIndex == 0)
         {
-            SoundManager.instance.Play("bgm");          
+            SoundManager.instance.Play("bgm");
         }
         else if (buildIndex == 1)
         {
@@ -66,12 +69,10 @@ public class GameManager : MonoBehaviour
         }
         else if (buildIndex == 3)
         {
-            // Display the amount of coins collected
             coinText = GameObject.Find("coinText").GetComponent<TextMeshProUGUI>();
             if (coinText != null)
             {
-                coinsCollected = PlayerPrefs.GetInt("CoinsCollected", 0);
-                coinText.text = "Coins: " + coinsCollected.ToString();
+                coinText.text = "Coins: " + gameData.totalCoinsCollected.ToString();
             }
         }
         animator.SetTrigger("Start");
@@ -81,28 +82,27 @@ public class GameManager : MonoBehaviour
     private void InitializeSceneTrans()
     {
         isDead = false;
+        isGameOverHandled = false;
 
         animator = GameObject.Find("SceneTrans").GetComponentInChildren<Animator>();
-        sceneTrasitionImage = GameObject.Find("SceneTrans").GetComponentInChildren<Image>();
+        sceneTransitionImage = GameObject.Find("SceneTrans").GetComponentInChildren<Image>();
     }
 
     private void InitializeGameElement()
     {
         isDead = false;
-        gamerOverGO = GameObject.Find("Canvas/GameOver");
-        sceneTrasitionImage = GameObject.Find("SceneTrans").GetComponentInChildren<Image>();
-        sceneTrasitionImage.enabled = true;
-        gamerOverGO.SetActive(false);
+        isGameOverHandled = false;
+        gameOverGO = GameObject.Find("Canvas/GameOver");
+        sceneTransitionImage = GameObject.Find("SceneTrans").GetComponentInChildren<Image>();
+        sceneTransitionImage.enabled = true;
+        gameOverGO.SetActive(false);
 
         timerText = GameObject.Find("Timer").GetComponentInChildren<TextMeshProUGUI>();
 
-        Transform gameOverTransform = gamerOverGO.transform;
+        Transform gameOverTransform = gameOverGO.transform;
         endTimeText = gameOverTransform.Find("Total Time").GetComponent<TextMeshProUGUI>();
         endKillText = gameOverTransform.Find("Enemies Killed").GetComponent<TextMeshProUGUI>();
         endGoldText = gameOverTransform.Find("Coins Collected").GetComponent<TextMeshProUGUI>();
-
-        // Retrieve coins collected from PlayerPrefs
-        coinsCollected = PlayerPrefs.GetInt("CoinsCollected", 0);
 
         ResetGame();
     }
@@ -112,12 +112,14 @@ public class GameManager : MonoBehaviour
         elapsedTime = 0;
         isTimerRunning = true;
         enemiesKilled = 0;
+        coinsCollected = 0;
         UpdateTimerText();
+        UpdateCoinText();
     }
 
     private void Update()
     {
-        if (isDead)
+        if (isDead && !isGameOverHandled)
         {
             GameOver();
         }
@@ -148,14 +150,17 @@ public class GameManager : MonoBehaviour
     IEnumerator DisableSceneTransitionCoroutine()
     {
         yield return new WaitForSeconds(1f);
-        sceneTrasitionImage.enabled = false;
+        sceneTransitionImage.enabled = false;
     }
 
     private void GameOver()
     {
-        gamerOverGO.SetActive(true);
+        gameOverGO.SetActive(true);
         isTimerRunning = false;
         UpdateEndMenuText();
+        isGameOverHandled = true;
+
+        gameData.totalCoinsCollected += coinsCollected;
     }
 
     private void UpdateEndMenuText()
@@ -170,10 +175,19 @@ public class GameManager : MonoBehaviour
     public void AddCoin()
     {
         coinsCollected++;
-        endGoldText.text = coinsCollected.ToString();
-        // Store coins collected in PlayerPrefs
-        PlayerPrefs.SetInt("CoinsCollected", coinsCollected);
-        PlayerPrefs.Save();
+        UpdateCoinText();
+    }
+
+    private void UpdateCoinText()
+    {
+        if (coinText != null)
+        {
+            coinText.text = "Coins: " + coinsCollected.ToString();
+        }
+        if (endGoldText != null)
+        {
+            endGoldText.text = coinsCollected.ToString();
+        }
     }
 
     public void AddEnemyKill()

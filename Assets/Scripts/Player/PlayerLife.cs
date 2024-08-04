@@ -57,6 +57,7 @@ public class PlayerLife : MonoBehaviour
     private void Die()
     {
         GameManager.instance.isDead = true;
+        playerCollider.enabled = false;
         playerController playerController = GetComponent<playerController>();
         if (playerController != null)
         {
@@ -67,5 +68,6 @@ public class PlayerLife : MonoBehaviour
     public void ResetHealth()
     {
         playerHealth = 3;
+        playerCollider.enabled = true;
     }
 }

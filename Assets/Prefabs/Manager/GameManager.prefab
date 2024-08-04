@@ -45,5 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDead: 0
-  timerText: {fileID: 0}
-  coinText: {fileID: 0}
+  gameData: {fileID: 11400000, guid: f8bda36b328744e478b7969cbe3435dd, type: 2}
