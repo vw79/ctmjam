@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.VFX;
@@ -18,9 +19,10 @@ public class playerController : MonoBehaviour
     [SerializeField] private Transform movingBar;
     [SerializeField] private Transform correctPositionBar;
     [SerializeField] private RectTransform horizontalBar;
-
-    public GameObject hitBox;
-    public ParticleSystem coinVFX;
+    [SerializeField] private TextMeshProUGUI comboTextB;
+    [SerializeField] private TextMeshProUGUI comboTextF;
+    [SerializeField] private GameObject hitBox;
+    [SerializeField] private ParticleSystem coinVFX;
 
     private SpriteRenderer spriteRenderer;
     private Animator animator;
@@ -31,6 +33,8 @@ public class playerController : MonoBehaviour
 
     private float[] sectionCenters;
     private float sectionWidth;
+
+    private int comboCount = 0;
 
     private void Awake()
     {
@@ -64,6 +68,11 @@ public class playerController : MonoBehaviour
     {
         coinVFX.Stop();
         hitBox.SetActive(false);
+        comboTextB = GameObject.Find("ComboTextB").GetComponent<TextMeshProUGUI>();
+        comboTextF = GameObject.Find("ComboTextF").GetComponent<TextMeshProUGUI>();
+
+        comboTextB.text = "";
+        comboTextF.text = "";
     }
 
     private void Update()
@@ -93,7 +102,6 @@ public class playerController : MonoBehaviour
             if (playerInput.Player.Jump.triggered)
             {
                 SetState(State.Attack);
-                //SetState(State.Die); testing
             }
         }
     }
@@ -124,7 +132,6 @@ public class playerController : MonoBehaviour
 
     public void SetState(State newState)
     {
-        // Prevent changing state if the current state is Die
         if (currentState == State.Die)
         {
             return;
@@ -152,24 +159,52 @@ public class playerController : MonoBehaviour
         float movingBarX = movingBar.localPosition.x;
         float correctBarX = correctPositionBar.localPosition.x;
 
+        Debug.Log($"Checking bar position: MovingBarX = {movingBarX}, CorrectBarX = {correctBarX}");
+
         if (Mathf.Abs(movingBarX - correctBarX) <= 30.0f)
         {
             coinVFX.Play();
             hitBox.SetActive(true);
             UpdateCorrectPositionBar();
             StartCoroutine(DisableHitBox(coinVFX.main.duration));
+
+            bool enemyHit = hitBox.GetComponent<hitBox>().CheckEnemyHit();
+            Debug.Log($"Correct position. Enemy hit: {enemyHit}");
+
+            if (enemyHit)
+            {
+                comboCount++;
+                UpdateComboText();
+            }
         }
         else
         {
-            Debug.Log("Try Again!");
+            comboCount = Mathf.Max(comboCount / 2, 0);
+            UpdateComboText();
+            Debug.Log("Wrong position or no enemy hit. Combo count halved.");
         }
     }
+
     private IEnumerator DisableHitBox(float duration)
     {
         yield return new WaitForSeconds(duration);
         hitBox.SetActive(false);
     }
 
+    private void UpdateComboText()
+    {
+        if (comboCount > 0)
+        {
+            string comboText = "x" + comboCount;
+            comboTextB.text = comboText;
+            comboTextF.text = comboText;
+        }
+        else
+        {
+            comboTextB.text = "";
+            comboTextF.text = "";
+        }
+    }
 
     private void UpdateCorrectPositionBar()
     {
@@ -181,6 +216,4 @@ public class playerController : MonoBehaviour
 
         correctPositionBar.localPosition = new Vector3(randomXWithinSection, correctPositionBar.localPosition.y, correctPositionBar.localPosition.z);
     }
-
-    
 }
