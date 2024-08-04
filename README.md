@@ -40,4 +40,5 @@ Tap the White Line once when it aligns with the red line in order to explode and
 # Characters
 Players are only playing as 1 character which is Biggie, the mascot of AirAsia. Different skins of Biggie are also created which can be obtained from the Gacha Store
 
-![BIGGIE (1)](https://github.com/user-attachments/assets/e658e229-ad61-4d6d-8507-2477e642f047)         ![BIGGIE1 (1) (1)](https://github.com/user-attachments/assets/4ebd14d5-60ab-4017-bd93-a89f83354f2d)
+![BIGGIE (1)](https://github.com/user-attachments/assets/e658e229-ad61-4d6d-8507-2477e642f047)         ![BIGGIE1 (1) (1)](https://github.com/user-attachments/assets/aea7e5b0-d585-4386-a70c-1bdc4d43a424)
+
