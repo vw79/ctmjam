@@ -14,50 +14,116 @@ public struct userID{
     public string Id {get;set;}
 }
 
+[System.Serializable]
+[FirestoreData]
+public class Skins{
+    [Fire]
+    public string skinName;
+    public bool IsOwned = false;
+}
+
 public class DBManager : MonoBehaviour
 {
+    [Header("DeviceID")]
     private string DeviceID;
+
+    [Header("Firebase")]
     private FirebaseFirestore db;
     public string DBCollectionName = "PlayerDB";
     public string DBDocumentName = "PlayerID";
 
-    public TextMeshProUGUI text;
-    private bool isExists;
+    [Header("Skin")]
+    public Skins[] ListofSkins;
 
-    ListenerRegistration listenerRegistration;
 
-    
+
     private void Start()
     { 
         db = FirebaseFirestore.DefaultInstance;
         DeviceID = SystemInfo.deviceUniqueIdentifier;
-        isExists = checkID().Result;
-        Debug.Log("Is Device ID valid: " + isExists);
+        checkID().ContinueWithOnMainThread(task => 
+        {
+            if (task.IsCompleted)
+            {
+                bool isDeviceIDValid = task.Result;
+                Debug.Log("Is Device ID valid: " + isDeviceIDValid);
+                if(!isDeviceIDValid){
+                    AddData();
+                }
+            }
+            else
+            {
+                Debug.LogError("Error checking device ID: " + task.Exception);
+            }
+        });
     }
 
     private async Task<bool> checkID()
     {
-        string deviceID = SystemInfo.deviceUniqueIdentifier;
+        DocumentReference docRef = db.Collection(DBCollectionName).Document(DBDocumentName);
+        DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
 
-        // Create a reference to the collection
-        CollectionReference collectionRef = db.Collection(DBCollectionName);
-
-        // Query the collection for a document with the matching device ID
-        Query query = collectionRef.WhereEqualTo("deviceID", deviceID);
-
-        // Execute the query and get the results
-        QuerySnapshot querySnapshot = await query.GetSnapshotAsync();
-
-        // Check if any documents match the query
-        if (querySnapshot.Count > 0)
+        if (snapshot.Exists)
         {
-            // Device ID found in Firestore
-            return true;
+            return snapshot.ContainsField(DeviceID);
         }
         else
         {
-            // Device ID not found in Firestore
+            Debug.Log("PlayerID document does not exist.");
             return false;
         }
     }
+
+    private void AddData(){
+        DocumentReference docRef = db.Collection("PlayerDB").Document("PlayerID");
+        Dictionary<string, object> docData = new Dictionary<string, object>
+        {
+                { "ID", DeviceID },
+        };
+        docRef.SetAsync(docData);
+
+        DocumentReference skinDocRef = db.Collection("SkinDB").Document(DeviceID);
+        DocumentReference scoreDocRef = db.Collection("ScoreDB").Document(DeviceID);
+
+        List<Dictionary<string, object>> skinsData = new List<Dictionary<string, object>>();
+        foreach (Skins skin in ListofSkins)
+        {
+            Dictionary<string, object> skinDict = new Dictionary<string, object>
+            {
+                { "skinName", skin.skinName },
+                { "IsOwned", skin.IsOwned }
+            };
+            skinsData.Add(skinDict);
+        }
+
+        Dictionary<string, object> scoreData = new Dictionary<string, object>
+        {
+            { "highScore", 0 } 
+        };
+
+         skinDocRef.SetAsync(skinsData).ContinueWithOnMainThread(task =>
+        {
+            if (task.IsCompleted)
+            {
+                Debug.Log("Successfully added document to skinDB collection.");
+            }
+            else
+            {
+                Debug.LogError("Failed to add document to skinDB collection: " + task.Exception);
+            }
+        });
+
+        scoreDocRef.SetAsync(scoreData).ContinueWithOnMainThread(task =>
+        {
+            if (task.IsCompleted)
+            {
+                Debug.Log("Successfully added document to ScoreDB collection.");
+            }
+            else
+            {
+                Debug.LogError("Failed to add document to ScoreDB collection: " + task.Exception);
+            }
+        });
+    }
+
 }
