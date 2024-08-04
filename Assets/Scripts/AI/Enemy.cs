@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -10,20 +11,22 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float stopDistance = 2f;
     [SerializeField] private float lungeSpeed = 10f;
     [SerializeField] private float slingshotCooldown = 2f;
-    [SerializeField] private int regularDamage = 1;
-    [SerializeField] private int slingshotDamage = 2;
+    [SerializeField] private int regularDamage;
+    [SerializeField] private int slingshotDamage;
     private Rigidbody2D rb;
     private Vector2 movement;
-    private bool isDamaging = false;
     private bool isLunging = false;
     private PlayerLife playerLife;
     private Vector2 originalPosition;
+    private EnemySpawner spawner;
 
     void Start()
     {
+        player = GameObject.Find("PlayerSprite").GetComponent<Transform>(); 
         rb = GetComponent<Rigidbody2D>();
-        playerLife = player.GetComponent<PlayerLife>();
+        playerLife = GameObject.Find("Player").GetComponent<PlayerLife>();
         originalPosition = rb.position;
+        spawner = GameObject.FindObjectOfType<EnemySpawner>();
     }
 
     void Update()
@@ -38,6 +41,11 @@ public class Enemy : MonoBehaviour
         {
             SlingshotEnemyBehavior(direction);
         }
+
+        if (!isLunging)
+        {
+            moveEnemy(movement);
+        }
     }
 
     private void RegularEnemyBehavior(Vector3 direction)
@@ -46,16 +54,10 @@ public class Enemy : MonoBehaviour
         {
             direction.Normalize();
             movement = direction;
-            isDamaging = false;
         }
         else
         {
             movement = Vector2.zero;
-            if (!isDamaging)
-            {
-                isDamaging = true;
-                StartCoroutine(DamagePlayer(regularDamage, 1f));
-            }
         }
     }
 
@@ -76,30 +78,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        if (!isLunging)
-        {
-            moveEnemy(movement);
-        }
-    }
-
     void moveEnemy(Vector2 direction)
     {
         rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
-    }
-
-    private IEnumerator DamagePlayer(int damage, float damageInterval)
-    {
-        while (isDamaging)
-        {
-            if (playerLife != null)
-            {
-                playerLife.TakeDamage(damage);
-            }
-            Debug.Log("Player is being Damaged by " + enemyType + "!");
-            yield return new WaitForSeconds(damageInterval);
-        }
     }
 
     private IEnumerator Lunge()
@@ -115,13 +96,6 @@ public class Enemy : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log("Player hit by Slingshot!");
-
-        if (playerLife != null)
-        {
-            playerLife.TakeDamage(slingshotDamage);
-        }
-
         yield return new WaitForSeconds(0.5f);
 
         // Retreat back to the original position
@@ -134,5 +108,24 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(slingshotCooldown);
 
         isLunging = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (enemyType == EnemyType.Regular)
+            {
+                playerLife.TakeDamage(regularDamage);
+            }
+            else if (enemyType == EnemyType.Slingshot)
+            {
+                playerLife.TakeDamage(slingshotDamage);
+            }
+        }
+        else if (collision.gameObject.CompareTag("Hitbox"))
+        {
+            spawner.ReturnToPool(gameObject);
+        }
     }
 }

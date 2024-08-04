@@ -5,7 +5,6 @@ public class MainMenuManager : MonoBehaviour
 {
     public void PlayGame()
     {
-        Debug.Log("Play Button Clicked!");
         SceneManager.LoadScene("Game");
     }
 
@@ -14,9 +13,18 @@ public class MainMenuManager : MonoBehaviour
         Debug.Log("Options Button Clicked!");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DressingRoom()
     {
-        
+        SceneManager.LoadScene("DressingRoom");
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void GachaRoom()
+    {
+        SceneManager.LoadScene("GachaScene");
     }
 }

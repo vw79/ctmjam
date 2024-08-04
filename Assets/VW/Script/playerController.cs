@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 public class playerController : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class playerController : MonoBehaviour
     [SerializeField] private Transform movingBar;
     [SerializeField] private Transform correctPositionBar;
     [SerializeField] private RectTransform horizontalBar;
+
+    public GameObject hitBox;
+    public ParticleSystem coinVFX;
 
     private SpriteRenderer spriteRenderer;
     private Animator animator;
@@ -56,9 +60,18 @@ public class playerController : MonoBehaviour
         playerInput.Disable();
     }
 
+    private void Start()
+    {
+        coinVFX.Stop();
+        hitBox.SetActive(false);
+    }
+
     private void Update()
     {
-        HandleInput();
+        if (!GameManager.instance.isDead)
+        {
+            HandleInput();
+        }
         HandleState();
     }
 
@@ -109,7 +122,7 @@ public class playerController : MonoBehaviour
         }
     }
 
-    private void SetState(State newState)
+    public void SetState(State newState)
     {
         // Prevent changing state if the current state is Die
         if (currentState == State.Die)
@@ -139,16 +152,24 @@ public class playerController : MonoBehaviour
         float movingBarX = movingBar.localPosition.x;
         float correctBarX = correctPositionBar.localPosition.x;
 
-        if (Mathf.Abs(movingBarX - correctBarX) <= 20.0f)
+        if (Mathf.Abs(movingBarX - correctBarX) <= 30.0f)
         {
-            Debug.Log("Success!");
+            coinVFX.Play();
+            hitBox.SetActive(true);
             UpdateCorrectPositionBar();
+            StartCoroutine(DisableHitBox(coinVFX.main.duration));
         }
         else
         {
             Debug.Log("Try Again!");
         }
     }
+    private IEnumerator DisableHitBox(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        hitBox.SetActive(false);
+    }
+
 
     private void UpdateCorrectPositionBar()
     {
@@ -160,4 +181,6 @@ public class playerController : MonoBehaviour
 
         correctPositionBar.localPosition = new Vector3(randomXWithinSection, correctPositionBar.localPosition.y, correctPositionBar.localPosition.z);
     }
+
+    
 }

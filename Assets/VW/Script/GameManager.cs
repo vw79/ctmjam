@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public Animator animator;
-    public GameObject sceneTransitionGO;
+    private Animator animator;
+    private Image sceneTrasitionImage;
+    private GameObject gamerOverGO;
+    public bool isDead = false;
 
     private void Awake()
     {
@@ -23,12 +26,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-
-    }
-
-    #region Scene Management
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -41,17 +38,43 @@ public class GameManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        animator.SetTrigger("Start");
-        StartCoroutine(DisableSceneTransitionCoroutine());
-
         int buildIndex = SceneManager.GetActiveScene().buildIndex;
         if (buildIndex == 0)
         {
+            InitializeSceneTrans();
+            InitializeGameElement();
             SoundManager.instance.Play("bgm");
         }
+        else if (buildIndex == 1)
+        {
+            InitializeSceneTrans();
+        }
+        animator.SetTrigger("Start");
+        StartCoroutine(DisableSceneTransitionCoroutine());
     }
-    #endregion
 
+    private void InitializeSceneTrans()
+    {
+        isDead = false;
+       
+        animator = GameObject.Find("SceneTrans").GetComponentInChildren<Animator>();
+        sceneTrasitionImage = GameObject.Find("SceneTrans").GetComponentInChildren<Image>();
+    }
+    private void InitializeGameElement()
+    {
+        isDead = false;       
+        gamerOverGO = GameObject.Find("GameOver");
+        sceneTrasitionImage.enabled = true;
+        gamerOverGO.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (isDead)
+        {
+            GameOver();
+        }
+    }
     public void LoadScene(int sceneIndex)
     {
         SceneManager.LoadScene(sceneIndex);
@@ -60,7 +83,11 @@ public class GameManager : MonoBehaviour
     IEnumerator DisableSceneTransitionCoroutine()
     {
         yield return new WaitForSeconds(1f);
-        sceneTransitionGO.SetActive(false);
+        sceneTrasitionImage.enabled = false;
     }
 
+    private void GameOver()
+    {
+        gamerOverGO.SetActive(true);
+    }
 }
