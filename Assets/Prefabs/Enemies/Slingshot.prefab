@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6238904468580953557}
   m_Layer: 6
   m_Name: Slingshot
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5335580603019622300}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -129,12 +129,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 1
   player: {fileID: 0}
+  bullet: {fileID: 0}
+  coin: {fileID: 3028044437998721243, guid: b44e0d3d009efa946809471f21045c22, type: 3}
   moveSpeed: 2
   stopDistance: 5
-  lungeSpeed: 30
+  lungeSpeed: 25
   slingshotCooldown: 2
   regularDamage: 0
   slingshotDamage: 1
+  startShotCooldown: 0
 --- !u!95 &5340597993306102241
 Animator:
   serializedVersion: 5
