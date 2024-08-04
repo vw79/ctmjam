@@ -21,6 +21,7 @@ of enemies such as Bolt, Coconut and The Driller.
 # Enemies
 
 **1.Bolt (Melee Attack)**: Bolt is a regular enemy who just deals melee damage to the player. This enemy has slow movement speed and also low damage deal. Players are able to easily kill this enemy.
+
 ![Enemy1 (1)](https://github.com/user-attachments/assets/a1d25da9-8cc1-46ed-8115-2d5ca236af00)
 
 
