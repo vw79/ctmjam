@@ -837,6 +837,55 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7822831615047169361, guid: 043c5a08fecc491c8951e150ac165122, type: 3}
   m_PrefabInstance: {fileID: 932113623}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &182240392
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 182240394}
+  - component: {fileID: 182240393}
+  m_Layer: 0
+  m_Name: Global Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &182240393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182240392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: d0b098b92b81ac9489f093ae19ee8cca, type: 2}
+--- !u!4 &182240394
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182240392}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.2654045, y: -0.7647107, z: -0.041251205}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &197349682
 GameObject:
   m_ObjectHideFlags: 0
@@ -1241,7 +1290,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -3906,6 +3955,7 @@ GameObject:
   - component: {fileID: 1487364089}
   - component: {fileID: 1487364088}
   - component: {fileID: 1487364087}
+  - component: {fileID: 1487364090}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -3989,6 +4039,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1487364090
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487364085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 2
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: -792.9618, y: 862.1041, z: -161.86133}
 --- !u!1 &1515004353
 GameObject:
   m_ObjectHideFlags: 0
@@ -4523,6 +4590,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1762863807}
   - component: {fileID: 1762863806}
+  - component: {fileID: 1762863808}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -4585,6 +4653,18 @@ Transform:
   - {fileID: 1487364086}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1762863808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762863805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729aad4491e915a41bda2b8325cf757a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1825349417
 GameObject:
   m_ObjectHideFlags: 0
@@ -5416,7 +5496,7 @@ Animator:
   m_GameObject: {fileID: 2099419805}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c277622e18d1cab45ac39af172ef2250, type: 2}
+  m_Controller: {fileID: 9100000, guid: fae6412de3934fb419f12b925b59ff91, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -54499,3 +54579,4 @@ SceneRoots:
   - {fileID: 776913130}
   - {fileID: 2018700957}
   - {fileID: 526124891}
+  - {fileID: 182240394}
