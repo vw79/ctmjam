@@ -83,7 +83,6 @@ public class Enemy : MonoBehaviour
             {
                 movement = Vector2.zero;
                 StartCoroutine(Lunge());
-                SoundManager.instance.Play("SlingShot");
             }
         }
     }
@@ -134,10 +133,15 @@ public class Enemy : MonoBehaviour
 
         Vector2 lungeTarget = (Vector2)player.position;
 
+        SoundManager.instance.Play("Charge");
+        
+        yield return new WaitForSeconds(0.5f);
+        
         // Lunge towards the player
         while (Vector2.Distance(rb.position, lungeTarget) > 0.1f)
         {
             rb.MovePosition(Vector2.MoveTowards(rb.position, lungeTarget, lungeSpeed * Time.deltaTime));
+            SoundManager.instance.Play("SlingShot");
             yield return null;
         }
 

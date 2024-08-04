@@ -3745,6 +3745,12 @@ MonoBehaviour:
     loop: 0
     playOnAwake: 0
     source: {fileID: 0}
+  - name: Charge
+    clip: {fileID: 8300000, guid: f17b269f305ba19489b66bcb4d864302, type: 3}
+    volume: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
 --- !u!4 &2025401440
 Transform:
   m_ObjectHideFlags: 0
