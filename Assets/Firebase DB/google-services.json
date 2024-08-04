@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1061503793451",
+    "project_id": "forestfrenzy",
+    "storage_bucket": "forestfrenzy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1061503793451:android:2feaf325ea1cf345a92d6e",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.ctmJam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBPn4QhR7D85Pet3wE-qeRyAjTsNr3iX0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
