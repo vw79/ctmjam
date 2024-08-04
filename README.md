@@ -31,7 +31,7 @@ Tap the White Line once when it aligns with the red line in order to explode and
 ![cc1 (1)](https://github.com/user-attachments/assets/558e2617-11b1-4b1c-b5fe-fa9615f4abdc)
 
 
-**3.The Driller (Range Attack)**: The Driller is an actuall drilling tool that shoots screws at the player. Similar to The Coconut, if it is in range with the player, it stops and starts shooting screws at the player. They then start chasing the player once the player leaves their range of fire.
+**3.The Driller (Range Attack)**: The Driller is an actual drilling tool that shoots screws at the player. Similar to The Coconut, if it is in range with the player, it stops and starts shooting screws at the player. They then start chasing the player once the player leaves their range of fire.
 
 ![drill (1)](https://github.com/user-attachments/assets/d2ed2e08-1da7-4b24-b4f1-a9a45d024cfd)
 
