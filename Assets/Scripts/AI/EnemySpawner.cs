@@ -28,8 +28,8 @@ public class EnemySpawner : MonoBehaviour
         drillerPool = CreatePool (drillerPrefab, poolSize);
 
         StartCoroutine(SpawnFromPool(enemyInterval, enemyPool));
-        StartCoroutine(SpawnFromPool(slingshotInterval, slingshotPool));
-        StartCoroutine(SpawnFromPool(drillerInterval, drillerPool));
+        //StartCoroutine(SpawnFromPool(slingshotInterval, slingshotPool));
+        //StartCoroutine(SpawnFromPool(drillerInterval, drillerPool));
     }
 
     private List<GameObject> CreatePool(GameObject prefab, int size)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CollectCoins : MonoBehaviour
 {
-    private int counter;
+    private static int counter;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
