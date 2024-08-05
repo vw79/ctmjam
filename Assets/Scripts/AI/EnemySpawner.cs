@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private GameObject slingshotPrefab;
     [SerializeField] private GameObject drillerPrefab;
+    [SerializeField] private GameObject bulletPrefab; // Bullet prefab for pooling
 
     [SerializeField] private float enemyInterval = 4f;
     [SerializeField] private float slingshotInterval = 7f;
@@ -20,12 +21,14 @@ public class EnemySpawner : MonoBehaviour
     private List<GameObject> enemyPool;
     private List<GameObject> slingshotPool;
     private List<GameObject> drillerPool;
+    private List<GameObject> bulletPool; // Bullet pool
 
     void Start()
     {
         enemyPool = CreatePool(enemyPrefab, poolSize);
         slingshotPool = CreatePool(slingshotPrefab, poolSize);
         drillerPool = CreatePool(drillerPrefab, poolSize);
+        bulletPool = CreatePool(bulletPrefab, poolSize); // Create bullet pool
 
         StartCoroutine(SpawnFromPool(enemyInterval, enemyPool));
         StartCoroutine(SpawnFromPool(slingshotInterval, slingshotPool));
@@ -84,5 +87,10 @@ public class EnemySpawner : MonoBehaviour
     public void ReturnToPool(GameObject obj)
     {
         obj.SetActive(false);
+    }
+
+    public GameObject GetBulletFromPool()
+    {
+        return GetPooledObject(bulletPool);
     }
 }

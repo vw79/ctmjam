@@ -43,7 +43,7 @@ public class PlayerLife : MonoBehaviour
     {
         playerCollider.enabled = false;
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 5; i++)
         {
             playerSprite.color = Color.red;
             yield return new WaitForSeconds(0.2f);

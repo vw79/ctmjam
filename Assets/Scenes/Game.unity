@@ -5661,10 +5661,11 @@ MonoBehaviour:
   enemyPrefab: {fileID: 6386534220501638061, guid: 5c93385042308844a9863df82829b094, type: 3}
   slingshotPrefab: {fileID: 5335580603019622300, guid: 5817b81d97be161439ba31359b2a9850, type: 3}
   drillerPrefab: {fileID: 3236533189697727012, guid: 2a1f71e74f391e8418a1c20890f913d8, type: 3}
+  bulletPrefab: {fileID: 727721750340635194, guid: 51a71673e0fb0ab4ca9cf44d2a669a7d, type: 3}
   enemyInterval: 4
   slingshotInterval: 7
   drillerInterval: 10
-  poolSize: 8
+  poolSize: 6
   playerTransform: {fileID: 2099419806}
   safeDistance: 7
 --- !u!4 &2104452773
