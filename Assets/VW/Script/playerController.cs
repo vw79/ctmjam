@@ -161,7 +161,7 @@ public class playerController : MonoBehaviour
 
         Debug.Log($"Checking bar position: MovingBarX = {movingBarX}, CorrectBarX = {correctBarX}");
 
-        if (Mathf.Abs(movingBarX - correctBarX) <= 30.0f)
+        if (Mathf.Abs(movingBarX - correctBarX) <= 35.0f)
         {
             coinVFX.Play();
             hitBox.SetActive(true);

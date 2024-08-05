@@ -7,7 +7,6 @@ public class Enemy : MonoBehaviour
     public enum EnemyType { Regular, Slingshot, Driller }
     [SerializeField] private EnemyType enemyType;
     [SerializeField] private Transform player;
-    [SerializeField] private GameObject bullet;
     [SerializeField] private GameObject coin;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float stopDistance = 2f;
@@ -115,16 +114,18 @@ public class Enemy : MonoBehaviour
             }
 
         }
-
-
-
     }
 
     private void ShootBullet(Vector3 direction)
     {
-        GameObject bulletInstance = Instantiate(bullet, transform.position, Quaternion.identity);
-        DrillerBullet drillerBullet = bulletInstance.GetComponent<DrillerBullet>();
-        drillerBullet.SetDirection(direction);
+        GameObject bulletInstance = spawner.GetBulletFromPool();
+        if (bulletInstance != null)
+        {
+            bulletInstance.transform.position = transform.position;
+            bulletInstance.SetActive(true);
+            DrillerBullet drillerBullet = bulletInstance.GetComponent<DrillerBullet>();
+            drillerBullet.SetDirection(direction);
+        }
     }
 
     private IEnumerator Lunge()
@@ -159,7 +160,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !GameManager.instance.isDead)
         {
             if (enemyType == EnemyType.Regular)
             {

@@ -9,6 +9,7 @@ public class PlayerLife : MonoBehaviour
     [SerializeField] private int playerHealth;
     [SerializeField] private Image[] hearts;
     [SerializeField] private SpriteRenderer playerSprite;
+    [SerializeField] private CapsuleCollider2D playerCollider;
 
     private void Start()
     {
@@ -25,14 +26,7 @@ public class PlayerLife : MonoBehaviour
 
         for (int i = 0; i < hearts.Length; i++)
         {
-            if (i < playerHealth)
-            {
-                hearts[i].enabled = true;
-            }
-            else
-            {
-                hearts[i].enabled = false;
-            }
+            hearts[i].enabled = i < playerHealth;
         }
     }
 
@@ -47,14 +41,23 @@ public class PlayerLife : MonoBehaviour
 
     private IEnumerator FlashRed()
     {
-        playerSprite.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
-        playerSprite.color = Color.white;
+        playerCollider.enabled = false;
+
+        for (int i = 0; i < 5; i++)
+        {
+            playerSprite.color = Color.red;
+            yield return new WaitForSeconds(0.2f);
+            playerSprite.color = Color.white;
+            yield return new WaitForSeconds(0.2f);
+        }
+
+        playerCollider.enabled = true;
     }
 
     private void Die()
     {
         GameManager.instance.isDead = true;
+        playerCollider.enabled = false;
         playerController playerController = GetComponent<playerController>();
         if (playerController != null)
         {
@@ -65,5 +68,6 @@ public class PlayerLife : MonoBehaviour
     public void ResetHealth()
     {
         playerHealth = 3;
+        playerCollider.enabled = true;
     }
 }

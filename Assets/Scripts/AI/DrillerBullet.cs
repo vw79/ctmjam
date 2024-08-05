@@ -7,11 +7,12 @@ public class DrillerBullet : MonoBehaviour
     private Vector3 direction;
     private int damage = 1;
     private PlayerLife playerLife;
+    private EnemySpawner spawner; // Reference to the spawner to return the bullet
 
     void Start()
     {
-        Destroy(gameObject, 3f);
         playerLife = GameObject.Find("Player").GetComponent<PlayerLife>();
+        spawner = GameObject.FindObjectOfType<EnemySpawner>(); // Get the spawner reference
     }
 
     void Update()
@@ -30,9 +31,25 @@ public class DrillerBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !GameManager.instance.isDead)
         {
             playerLife.TakeDamage(damage);
+            spawner.ReturnToPool(gameObject); // Return the bullet to the pool
         }
+    }
+
+    private void OnEnable()
+    {
+        Invoke("ReturnToPool", 3f); // Return the bullet to the pool after 3 seconds
+    }
+
+    private void OnDisable()
+    {
+        CancelInvoke("ReturnToPool"); // Cancel the invoke when the bullet is disabled
+    }
+
+    private void ReturnToPool()
+    {
+        spawner.ReturnToPool(gameObject); // Return the bullet to the pool
     }
 }
