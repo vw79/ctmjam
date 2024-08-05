@@ -5,16 +5,16 @@ using UnityEngine.UI;
 using TMPro;
 
 [System.Serializable]
-public class SkinDeets{
+public class SkinDetailss{
     public GameObject Skin;
     public string Name;
     public bool IsOwned;
 
 }
 
-public class DRoomController : MonoBehaviour
+public class DRoomControllerTest : MonoBehaviour
 {
-    public SkinDeets[] skinDeets;
+    public SkinDetailss[] skinDetails;
     public Button nextBtn;
     public Button prevBtn;
     public Button SelectBtn;
@@ -27,9 +27,9 @@ public class DRoomController : MonoBehaviour
     }
     public void ShowCurrentSkin(){
 
-        if (CurrentIndex >= 0 && CurrentIndex < skinDeets.Length)
+        if (CurrentIndex >= 0 && CurrentIndex < skinDetails.Length)
         {
-            SkinDeets CurrentSkin = skinDeets[CurrentIndex];
+            var CurrentSkin = skinDetails[CurrentIndex];
             if (DisplayModel != null) 
             {
                 DisplayModel.SetActive(false);
@@ -40,20 +40,20 @@ public class DRoomController : MonoBehaviour
                 DisplayModel = CurrentSkin.Skin;
                 DisplayModel.SetActive(true);
             }
-            SkinName.text = (CurrentSkin.Name);
+            SkinName.text = CurrentSkin.Name;
             if(CurrentSkin.IsOwned){
                 SelectBtn.interactable = false;
             }else{
                 SelectBtn.interactable = true;
             }
             nextBtn.interactable = CurrentIndex > 0;
-            prevBtn.interactable = CurrentIndex < skinDeets.Length - 1;
+            prevBtn.interactable = CurrentIndex < skinDetails.Length - 1;
 
         }
     }
 
     public void OnNextBtnPressed(){
-        if (CurrentIndex < skinDeets.Length - 1)
+        if (CurrentIndex < skinDetails.Length - 1)
             {
                 CurrentIndex++;
                 ShowCurrentSkin();
