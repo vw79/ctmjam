@@ -26,7 +26,16 @@ public class GameManager : MonoBehaviour
     private int enemiesKilled;
     private int coinsCollected;
 
-    public GameData gameData;
+    public SOGameData gameData;
+    private swipeMenu swipeMenu;
+
+    public SOplayerSkins Biggie;
+    public SOplayerSkins Biggie1;
+    public SOplayerSkins Biggie3;
+
+    private SpriteRenderer characterSpriteRenderer;
+    private Animator characterAnimator;
+
 
     private void Awake()
     {
@@ -67,6 +76,10 @@ public class GameManager : MonoBehaviour
             ResetGame();
             SoundManager.instance.Play("bgm");
         }
+        else if (buildIndex == 2)
+        {
+            swipeMenu = GameObject.Find("Content").GetComponentInChildren<swipeMenu>();
+        }
         else if (buildIndex == 3)
         {
             coinText = GameObject.Find("coinText").GetComponent<TextMeshProUGUI>();
@@ -86,6 +99,7 @@ public class GameManager : MonoBehaviour
 
         animator = GameObject.Find("SceneTrans").GetComponentInChildren<Animator>();
         sceneTransitionImage = GameObject.Find("SceneTrans").GetComponentInChildren<Image>();
+        sceneTransitionImage.enabled = true;
     }
 
     private void InitializeGameElement()
@@ -93,9 +107,11 @@ public class GameManager : MonoBehaviour
         isDead = false;
         isGameOverHandled = false;
         gameOverGO = GameObject.Find("Canvas/GameOver");
-        sceneTransitionImage = GameObject.Find("SceneTrans").GetComponentInChildren<Image>();
-        sceneTransitionImage.enabled = true;
         gameOverGO.SetActive(false);
+
+        characterSpriteRenderer = GameObject.Find("Biggie").GetComponent<SpriteRenderer>();
+        characterAnimator = GameObject.Find("Biggie").GetComponent<Animator>();
+        chooseSkin();
 
         timerText = GameObject.Find("Timer").GetComponentInChildren<TextMeshProUGUI>();
 
@@ -147,6 +163,18 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneIndex);
     }
 
+    public void LoadGameWithSkin()
+    {
+        if (gameData.selectedCharacter == "Biggie" || gameData.selectedCharacter == "Biggie1" || gameData.selectedCharacter == "Biggie3")
+        {          
+            SceneManager.LoadScene(1);
+        }
+        else
+        {
+            Debug.LogWarning("Skin not available");
+        }
+    }
+
     IEnumerator DisableSceneTransitionCoroutine()
     {
         yield return new WaitForSeconds(1f);
@@ -194,5 +222,41 @@ public class GameManager : MonoBehaviour
     {
         enemiesKilled++;
         endKillText.text = enemiesKilled.ToString();
+    }
+
+    public void UpdateSelectedCharacter()
+    {
+        if (swipeMenu != null)
+        {
+            gameData.selectedCharacter = swipeMenu.GetSelectedCharacterName();
+        }
+    }
+
+    private void chooseSkin()
+    {
+        SOplayerSkins selectedCharacterData;
+
+        switch (gameData.selectedCharacter)
+        {
+            case "Biggie":
+                selectedCharacterData = Biggie;
+                break;
+            case "Biggie1":
+                selectedCharacterData = Biggie1;
+                break;
+            case "Biggie3":
+                selectedCharacterData = Biggie3;
+                break;
+            default:
+                selectedCharacterData = Biggie;
+                Debug.LogWarning("Selected character not found. Defaulting to Biggie.");
+                break;
+        }
+
+        if (selectedCharacterData != null)
+        {
+            characterSpriteRenderer.sprite = selectedCharacterData.characterSprite;
+            characterAnimator.runtimeAnimatorController = selectedCharacterData.animatorController;
+        }
     }
 }

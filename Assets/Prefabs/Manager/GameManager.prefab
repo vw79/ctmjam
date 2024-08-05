@@ -46,3 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDead: 0
   gameData: {fileID: 11400000, guid: f8bda36b328744e478b7969cbe3435dd, type: 2}
+  Biggie: {fileID: 11400000, guid: bb10534aaf1c8e749a3e8cedf2704682, type: 2}
+  Biggie1: {fileID: 11400000, guid: bdb6bb730ec774b42a473ddd79bd78b3, type: 2}
+  Biggie3: {fileID: 11400000, guid: 43e14976b9012544ca50ac92965d3c6f, type: 2}

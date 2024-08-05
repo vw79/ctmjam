@@ -108,25 +108,74 @@ public class playerController : MonoBehaviour
 
     private void HandleState()
     {
-        switch (currentState)
+        if (GameManager.instance.gameData.selectedCharacter == "Biggie")
         {
-            case State.Idle:
-                animator.Play("biggie_idle");
-                break;
+            switch (currentState)
+            {
+                case State.Idle:
+                    animator.Play("biggie_idle");
+                    break;
 
-            case State.Walk:
-                Move();
-                animator.Play("biggie_walk");
-                break;
+                case State.Walk:
+                    Move();
+                    animator.Play("biggie_walk");
+                    break;
 
-            case State.Attack:
-                CheckBarPosition();
-                SetState(State.Idle);
-                break;
+                case State.Attack:
+                    CheckBarPosition();
+                    SetState(State.Idle);
+                    break;
 
-            case State.Die:
-                animator.Play("biggie_die");
-                break;
+                case State.Die:
+                    animator.Play("biggie_die");
+                    break;
+            }
+        }
+        else if (GameManager.instance.gameData.selectedCharacter == "Biggie1")
+        {
+            switch (currentState)
+            {
+                case State.Idle:
+                    animator.Play("biggie1_idle");
+                    break;
+
+                case State.Walk:
+                    Move();
+                    animator.Play("biggie1_walk");
+                    break;
+
+                case State.Attack:
+                    CheckBarPosition();
+                    SetState(State.Idle);
+                    break;
+
+                case State.Die:
+                    animator.Play("biggie1_die");
+                    break;
+            }
+        }
+        else if (GameManager.instance.gameData.selectedCharacter == "Biggie3")
+        {
+            switch (currentState)
+            {
+                case State.Idle:
+                    animator.Play("biggie3_idle");
+                    break;
+
+                case State.Walk:
+                    Move();
+                    animator.Play("biggie3_walk");
+                    break;
+
+                case State.Attack:
+                    CheckBarPosition();
+                    SetState(State.Idle);
+                    break;
+
+                case State.Die:
+                    animator.Play("biggie3_die");
+                    break;
+            }
         }
     }
 
@@ -161,7 +210,7 @@ public class playerController : MonoBehaviour
 
         Debug.Log($"Checking bar position: MovingBarX = {movingBarX}, CorrectBarX = {correctBarX}");
 
-        if (Mathf.Abs(movingBarX - correctBarX) <= 35.0f)
+        if (Mathf.Abs(movingBarX - correctBarX) <= 40.0f)
         {
             coinVFX.Play();
             hitBox.SetActive(true);

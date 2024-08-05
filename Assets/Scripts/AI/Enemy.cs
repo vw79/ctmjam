@@ -25,9 +25,9 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.Find("PlayerSprite").GetComponent<Transform>();
+        player = GameObject.Find("Player").GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();
-        playerLife = GameObject.Find("Player").GetComponent<PlayerLife>();
+        playerLife = player.GetComponentInChildren<PlayerLife>();
         originalPosition = rb.position;
         spawner = GameObject.FindObjectOfType<EnemySpawner>();
     }
@@ -181,11 +181,11 @@ public class Enemy : MonoBehaviour
 
     private void SpawnCoins()
     {
-        int coinCount = Random.Range(2, 4); // Random number of coins between 2 and 5
+        int coinCount = Random.Range(0, 4);
 
         for (int i = 0; i < coinCount; i++)
         {
-            Vector3 spawnPosition = transform.position + (Vector3)Random.insideUnitCircle * 2.5f; // Randomize the spawn position a bit
+            Vector3 spawnPosition = transform.position + (Vector3)Random.insideUnitCircle * 2.5f;
             Instantiate(coin, spawnPosition, Quaternion.identity);
         }
     }

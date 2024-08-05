@@ -36,6 +36,10 @@ public class DrillerBullet : MonoBehaviour
             playerLife.TakeDamage(damage);
             spawner.ReturnToPool(gameObject); // Return the bullet to the pool
         }
+        else if (collision.gameObject.CompareTag("Hitbox"))
+        {
+            spawner.ReturnToPool(gameObject);
+        }
     }
 
     private void OnEnable()

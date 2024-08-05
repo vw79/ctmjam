@@ -741,7 +741,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 60, y: 60, z: 60}
+  m_LocalScale: {x: 70, y: 70, z: 70}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2099419806}
@@ -2240,17 +2240,6 @@ MonoBehaviour:
   - {fileID: 614285901}
   playerSprite: {fileID: 2099419807}
   playerCollider: {fileID: 2099419809}
---- !u!114 &784458970 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6423255627166294084, guid: b2d8cc970e9de71478b1b652538598cc, type: 3}
-  m_PrefabInstance: {fileID: 80059057}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &877156843
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2458,7 +2447,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5255999745714295789, guid: 275b280c081e3406c94cdb832d875a59, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -170
+      value: -185
       objectReference: {fileID: 0}
     - target: {fileID: 5255999745714295789, guid: 275b280c081e3406c94cdb832d875a59, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -5472,7 +5461,7 @@ GameObject:
   - component: {fileID: 2099419810}
   - component: {fileID: 2099419809}
   m_Layer: 0
-  m_Name: PlayerSprite
+  m_Name: Biggie
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30267,10 +30256,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2777770229529994254, guid: c75ebf471fd8118489f2919b98a5c2a0, type: 3}
-      propertyPath: timerText
-      value: 
-      objectReference: {fileID: 784458970}
     - target: {fileID: 5688323599997942248, guid: c75ebf471fd8118489f2919b98a5c2a0, type: 3}
       propertyPath: m_Name
       value: GameManager

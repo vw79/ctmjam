@@ -15,7 +15,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void DressingRoom()
     {
-        SceneManager.LoadScene("DressingRoom");
+        SceneManager.LoadScene("BetterDressingRoom");
     }
 
     public void MainMenu()
