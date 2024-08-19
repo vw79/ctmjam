@@ -6,7 +6,7 @@ public class CollectCoins : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && !GameManager.instance.isDead)
+        if (collision.gameObject.CompareTag("CoinPick") && !GameManager.instance.isDead)
         {
             Destroy(gameObject);
             SoundManager.instance.Play("CollectCoins");

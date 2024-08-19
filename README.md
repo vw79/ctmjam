@@ -51,5 +51,5 @@ The Gacha Store is where the player can spend coins they collect from enemies in
 
 ![BIGGIE1 (1) (1)](https://github.com/user-attachments/assets/aea7e5b0-d585-4386-a70c-1bdc4d43a424)
 
-# Firebase
+# Firebase (experimental)
 The game also uses Firebase to store various different IDs in order for more efficient utilization. Some examples are the high score the player gets by killing enemies as well as the skins that the player can unlock from the Gacha Store.
