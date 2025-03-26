@@ -1,5 +1,5 @@
 # Game Description
-'Forest Frenzy' is a 2D top down game made in the Unity Game Engine. In this action-packed game, players navigate through a thick jungle filled with vast vegetation. They are also faced with different variants of enemies such as Bolt, Coconut and The Driller. 
+**Forest Frenzy** is a 2D top-down action game made in the **Unity Game Engine** for the [**RedGames Jam 2024**](https://itch.io/jam/redgames-jam-2024/rate/2877025), organised by AirAsia. In this fast-paced jungle adventure, players must navigate through dense vegetation while battling a variety of enemy types — including the agile **Bolt**, the explosive **Coconut**, and the relentless **Driller**.
 
 # Game Mechanics
 **1. QTE Bar Combat System**: Players are greeted with a QTE Bar on their screen which is their attack system. Players have to successfully hit the red line at the correct timing when the white line aligns with the red line. Upon a successful hit, the character, which his name is 'Biggie' will emit a ranged coin explosion, which deals damage to nearby enemies and instantly kills them.
@@ -48,8 +48,14 @@ The Gacha Store is where the player can spend coins they collect from enemies in
 
 ![Dressing Room Image](https://github.com/user-attachments/assets/652b0872-b480-45d2-b9fe-2c9050e2719d)
 
-
 ![BIGGIE1 (1) (1)](https://github.com/user-attachments/assets/aea7e5b0-d585-4386-a70c-1bdc4d43a424)
 
-# Firebase (experimental)
-The game also uses Firebase to store various different IDs in order for more efficient utilization. Some examples are the high score the player gets by killing enemies as well as the skins that the player can unlock from the Gacha Store.
+# ▶️ Play on Itch.io
+
+<p align="center">
+  <a href="https://vinw79.itch.io/forestfrenzy">
+    <img src="https://img.itch.zone/aW1nLzE3MjE0MzYyLnBuZw==/315x250%23c/gQG3yu.png" width="300" alt="Play VAMP on Itch.io"/>
+    <br>
+    <strong>🕹️ Click here to play Forest Frenzy on Itch.io</strong>
+  </a>
+</p>
